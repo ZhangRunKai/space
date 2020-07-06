@@ -20,7 +20,7 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.
     <!-- 配置MyBatis SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
-        <property name="mapperLocations" value="classpath:com/ssm/repository/*.xml"></property>
+        <property name="mapperLocations" value="classpath:com/ssm/repository/map/*.xml"></property>
         <property name="configLocation" value="classpath:config.xml"></property>
     </bean>
     <!-- 扫描⾃定义的Mapper接⼝ -->

@@ -15,5 +15,13 @@ public class User {
     private String userAccount;
     private String userPassword;
 
-    
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userAccount='" + userAccount + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                '}';
+    }
 }
