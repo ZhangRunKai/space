@@ -4,6 +4,7 @@ package com.ssm.controller;
  * @author ZhangRunKai
  * @date 2020/7/4 18:20
  */
+import com.ssm.bean.JwtUtil;
 import com.ssm.bean.Result;
 import com.ssm.entity.User;
 import com.ssm.service.UserService;
@@ -42,4 +43,24 @@ public class UserHandler {
         System.out.println("second:"+user);
         return user;
     }
+
+    @RequestMapping("/json1")
+    public @ResponseBody User json1(){
+        System.out.println("成功进入");
+        User user=userService.findUserByUserName("zhangsan");
+        return user;
+    }
+
+    @RequestMapping("/login")
+    public @ResponseBody Result login(@RequestBody User user){
+        User user1=userService.findUserByUserName(user.getUserName());
+        if(user1.getUserPassword().equals(user.getUserPassword())){
+            return Result.success(JwtUtil.sign(user.getUserName(),user.getUserPassword()));
+        }
+        else{
+            return Result.fail();
+        }
+    }
+
+
 }

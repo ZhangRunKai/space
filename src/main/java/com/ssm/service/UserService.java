@@ -1,6 +1,8 @@
 package com.ssm.service;
 
 import java.util.List;
+
+import com.ssm.bean.Result;
 import com.ssm.entity.User;
 /**
  * @author ZhangRunKai
@@ -8,4 +10,7 @@ import com.ssm.entity.User;
  */
 public interface UserService {
     public List<User> findAll();
+
+    public User findUserByUserName(String userName);
+
 }
