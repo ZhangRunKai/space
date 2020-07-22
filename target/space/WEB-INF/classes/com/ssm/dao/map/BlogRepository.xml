@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.BlogRepository">
+    <select id="findAll" resultType="User">
+        select * from blog inner join blogOfUser on blogOfUser.userId=#{userId}
+    </select>
+
+    <insert id="save" parameterType="com.ssm.entity.Blog">
+        insert into blog (title,description,content,created) values(#{title},#{description},#{content},#{created})
+    </insert>
+
+</mapper>

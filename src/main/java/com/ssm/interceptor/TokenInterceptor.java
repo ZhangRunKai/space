@@ -25,6 +25,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         response.setCharacterEncoding("utf-8");
         System.out.println("进入拦截器");
         String auth=request.getHeader("auth");
+        System.out.println(auth);
         if(auth != null || JwtUtil.verify(auth)) return true;
         return false;
     }

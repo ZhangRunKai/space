@@ -10,7 +10,9 @@ import java.util.List;
 public interface UserRepository {
     public List<User> findAll();
 
-    public User findUserByUserName(String userName);
+    public User findUserByUserAccount(String userAccount);
 
     public Boolean saveByUser(User user);
+
+    public int save(User user);
 }

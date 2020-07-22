@@ -6,8 +6,12 @@
         select * from user
     </select>
 
-    <select id="findUserByUserName" resultType="User">
-            select * from user where userName=#{userName}
+    <select id="findUserByUserAccount" resultType="User">
+            select * from user where userAccount=#{userAccount}
     </select>
+
+    <insert id="save" parameterType="User">
+        insert into user (userName,userAccount,userPassword) values(#{userName},#{userAccount},#{userPassword})
+    </insert>
 
 </mapper>

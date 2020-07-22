@@ -11,6 +11,8 @@ import com.ssm.entity.User;
 public interface UserService {
     public List<User> findAll();
 
-    public User findUserByUserName(String userName);
+    public User findUserByUserAccount(String userAccount);
+
+    public Boolean save(User user);
 
 }

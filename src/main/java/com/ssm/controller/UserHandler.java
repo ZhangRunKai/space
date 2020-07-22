@@ -13,7 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 @Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/user")
 public class UserHandler {
     @Autowired
@@ -28,38 +32,36 @@ public class UserHandler {
         return modelAndView;
     }
 
-    @RequestMapping("/test")
-    public Result test(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("test");
-        modelAndView.addObject("rs","Result.success()");
-        return Result.success();
-    }
-
-    @RequestMapping("/json")
-    public @ResponseBody User json(@RequestBody User user){
-        System.out.println("first:"+user);
-        user= userService.findAll().get(0);
-        System.out.println("second:"+user);
-        return user;
-    }
-
-    @RequestMapping("/json1")
-    public @ResponseBody User json1(){
-        System.out.println("成功进入");
-        User user=userService.findUserByUserName("zhangsan");
-        return user;
-    }
-
     @RequestMapping("/login")
-    public @ResponseBody Result login(@RequestBody User user){
-        User user1=userService.findUserByUserName(user.getUserName());
+    public @ResponseBody Result login(@RequestBody User user, HttpServletResponse response){
+        User user1=userService.findUserByUserAccount(user.getUserAccount());
         if(user1.getUserPassword().equals(user.getUserPassword())){
-            return Result.success(JwtUtil.sign(user.getUserName(),user.getUserPassword()));
+            response.setHeader("Access-Control-Expose-Headers","token");
+            response.setHeader("token",JwtUtil.sign(user.getUserName(),user.getUserAccount()));
+            return Result.success(user);
         }
         else{
             return Result.fail();
         }
+    }
+
+    @RequestMapping("/register")
+    @ResponseBody
+    public  Result register(@RequestBody User user,HttpServletResponse response){
+        System.out.println("进入注册");
+        if(userService.save(user)){
+            response.setHeader("Access-Control-Expose-Headers","token");
+            response.setHeader("token",JwtUtil.sign(user.getUserName(),user.getUserAccount()));
+            user.setUserPassword("");
+            return Result.success(user);
+        }
+        return Result.fail();
+    }
+
+    @RequestMapping("/test")
+    public @ResponseBody Result login( HttpServletResponse response){
+        response.setHeader("token",JwtUtil.sign("1232321","asdsad"));
+        return Result.success();
     }
 
 
