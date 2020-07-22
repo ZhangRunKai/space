@@ -48,7 +48,7 @@ public class UserHandler {
     @RequestMapping("/register")
     @ResponseBody
     public  Result register(@RequestBody User user,HttpServletResponse response){
-        System.out.println("进入注册");
+        user.setRoleId(2);
         if(userService.save(user)){
             response.setHeader("Access-Control-Expose-Headers","token");
             response.setHeader("token",JwtUtil.sign(user.getUserName(),user.getUserAccount()));

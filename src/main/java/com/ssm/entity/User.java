@@ -14,15 +14,17 @@ public class User {
     private String userName;
     private String userAccount;
     private String userPassword;
+    private Integer roleId;
 
     public User() {
     }
 
-    public User(Integer id, String userName, String userAccount, String userPassword) {
+    public User(Integer id, String userName, String userAccount, String userPassword, Integer roleId) {
         this.id = id;
         this.userName = userName;
         this.userAccount = userAccount;
         this.userPassword = userPassword;
+        this.roleId = roleId;
     }
 
     public Integer getId() {
@@ -57,6 +59,14 @@ public class User {
         this.userPassword = userPassword;
     }
 
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -64,6 +74,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", userAccount='" + userAccount + '\'' +
                 ", userPassword='" + userPassword + '\'' +
+                ", roleId=" + roleId +
                 '}';
     }
 }

@@ -1,14 +1,14 @@
 package com.ssm.controller;
 
+import com.ssm.bean.PageBean;
 import com.ssm.bean.Result;
 import com.ssm.entity.Blog;
 import com.ssm.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author ZhangRunKai
@@ -32,10 +32,28 @@ public class BlogHander {
 
     @RequestMapping("/findAll")
     @ResponseBody
-    public Result save(@RequestBody Blog blog){
+    public Result save(){
+        PageBean pageBean=new PageBean<Blog>();
+        List<Blog> list=blogService.findAll(new PageBean());
+        pageBean.setData(list);
+        pageBean.setTotal(list.size());
+        return Result.success(pageBean);
+    }
 
-        if(blogService.save(blog)) return Result.success();
-        return Result.fail();
+    @RequestMapping("/findAllByUserId")
+    @ResponseBody
+    public Result findAllByUserId(){
+        PageBean pageBean=new PageBean<Blog>();
+        List<Blog> list=blogService.findAll(new PageBean());
+        pageBean.setData(list);
+        pageBean.setTotal(list.size());
+        return Result.success(pageBean);
+    }
+
+    @RequestMapping("/findBlogId")
+    @ResponseBody
+    public Result packageType(@RequestParam(value = "blogId", required = true) Integer blogId){
+        return Result.success(blogService.findId(blogId));
     }
 
 }

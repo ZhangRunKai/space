@@ -1,6 +1,9 @@
 package com.ssm.service;
 
+import com.ssm.bean.PageBean;
 import com.ssm.entity.Blog;
+
+import java.util.List;
 
 /**
  * @author ZhangRunKai
@@ -8,5 +11,9 @@ import com.ssm.entity.Blog;
  */
 public interface BlogService {
 
+    public List<Blog> findAll(PageBean pageBean);
+
     public boolean save(Blog blog);
+
+    public Blog findId(Integer id);
 }

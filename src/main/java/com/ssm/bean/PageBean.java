@@ -7,7 +7,7 @@ import java.util.List;
  * @date 2020/7/8 14:52
  */
 public class PageBean<T>{
-    private int currPage;//当前页数
+    private int currentPage;//当前页数
     private int pageSize;//每页显示的记录数
     private int total; //总计录数
     private int totalPage;//总页数
@@ -16,12 +16,12 @@ public class PageBean<T>{
     public PageBean() {
     }
 
-    public int getCurrPage() {
-        return currPage;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
     public int getPageSize() {

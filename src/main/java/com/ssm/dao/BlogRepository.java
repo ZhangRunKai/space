@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface BlogRepository {
 
-    public List<Blog> findAll(Integer id);
+    public List<Blog> findAll();
 
     public int save(Blog blog);
+
+    public Blog findId(Integer id);
 }

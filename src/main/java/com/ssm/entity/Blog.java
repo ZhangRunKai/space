@@ -8,30 +8,31 @@ import java.time.LocalDateTime;
  */
 public class Blog {
 
-    private Integer Id;
+    private Integer blogId;
     private String title;//标题
     private String description;//摘要
     private String content;//内容
     private LocalDateTime created;//创建时间，最后编辑时间
+    private Boolean status;
 
     public Blog() {
 
     }
 
-    public Blog(Integer id, String title, String description, String content, LocalDateTime created) {
-        Id = id;
+    public Blog(Integer blogId, String title, String description, String content, LocalDateTime created) {
+        this.blogId = blogId;
         this.title = title;
         this.description = description;
         this.content = content;
         this.created = created;
     }
 
-    public Integer getId() {
-        return Id;
+    public Integer getBlogId() {
+        return blogId;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setBlogId(Integer blogId) {
+        this.blogId = blogId;
     }
 
     public String getTitle() {
