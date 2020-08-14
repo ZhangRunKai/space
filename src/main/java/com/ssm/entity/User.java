@@ -7,10 +7,9 @@ import lombok.Data;
  * @date 2020/6/30 16:36
  */
 
-@Data
 public class User {
 
-    private Integer id;
+    private Integer userId;
     private String userName;
     private String userAccount;
     private String userPassword;
@@ -19,20 +18,20 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String userName, String userAccount, String userPassword, Integer roleId) {
-        this.id = id;
+    public User(Integer userId, String userName, String userAccount, String userPassword, Integer roleId) {
+        this.userId = userId;
         this.userName = userName;
         this.userAccount = userAccount;
         this.userPassword = userPassword;
         this.roleId = roleId;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -70,7 +69,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userAccount='" + userAccount + '\'' +
                 ", userPassword='" + userPassword + '\'' +

@@ -2,18 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
- http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
     <!-- 整合MyBatis -->
+
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="Zrk"></property>
         <property name="password" value="NoPW1234!"></property>
         <property name="jdbcUrl" value="jdbc:mysql://193.112.136.178:3306/ssm?useUnicode=true&amp;characterEncoding=UTF-8"></property>
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver">
-        </property>
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="initialPoolSize" value="10"></property>
         <property name="maxPoolSize" value="100"></property>
     </bean>

@@ -11,7 +11,9 @@ import java.util.List;
  */
 public interface BlogService {
 
-    public List<Blog> findAll(PageBean pageBean);
+    public List<Blog> findAll(Integer userId,Integer findUserId);
+
+    public boolean update(Blog blog);
 
     public boolean save(Blog blog);
 

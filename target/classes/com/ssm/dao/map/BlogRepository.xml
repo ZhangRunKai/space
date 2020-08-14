@@ -2,15 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.dao.BlogRepository">
+
+    <insert id="save" parameterType="com.ssm.entity.Blog">
+        insert into blog (title,description,content,created,status,userId)
+        values(#{title},#{description},#{content},#{created},#{status},#{userId})
+    </insert>
     <select id="findAll" resultType="com.ssm.entity.Blog">
         select * from blog
+        where userId=#{param1}
+        <if test="param1!=param2">
+            and status=true
+        </if>
     </select>
 
     <select id="findId" parameterType="Integer" resultType="com.ssm.entity.Blog">
         select * from blog where BlogId=#{id}
     </select>
-    <insert id="save" parameterType="com.ssm.entity.Blog">
-        insert into blog (title,description,content,created) values(#{title},#{description},#{content},#{created})
-    </insert>
+
+    <update id="update" parameterType="com.ssm.entity.Blog">
+        update blog set title=#{title},description=#{description},
+        content=#{content}
+        where blogId=#{blogId}
+    </update>
 
 </mapper>

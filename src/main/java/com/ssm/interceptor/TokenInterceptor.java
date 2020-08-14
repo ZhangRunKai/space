@@ -1,5 +1,7 @@
 package com.ssm.interceptor;
 
+import com.ssm.bean.Header;
+import org.springframework.core.Constants;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
@@ -22,23 +24,17 @@ import com.ssm.bean.JwtUtil;
 public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        response.setCharacterEncoding("utf-8");
-        System.out.println("进入拦截器");
-        String auth=request.getHeader("auth");
-        System.out.println(auth);
-        if(auth != null || JwtUtil.verify(auth)) return true;
+        String auth=request.getHeader(Header.AUTHORZATION);
+        try{
+            if(auth != null || JwtUtil.getUserId(auth)!=null){
+                return true;
+            }
+        }catch (Exception e){
+            return false;
+        }
         return false;
     }
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
-    }
 
     /**
      * 根据名字获取cookie

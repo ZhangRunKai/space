@@ -21,10 +21,18 @@ public class BlogServiceImpl implements BlogService {
     BlogRepository blogRepository;
 
     @Override
-    public List<Blog> findAll(PageBean pageBean) {
-        return blogRepository.findAll();
+    public List<Blog> findAll(Integer userId,Integer findUserId) {
+
+        return blogRepository.findAll(userId,findUserId);
+
     }
 
+    @Override
+    public boolean update(Blog blog) {
+
+        return blogRepository.update(blog)==1;
+
+    }
 
     @Override
     public boolean save(Blog blog) {

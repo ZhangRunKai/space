@@ -11,7 +11,7 @@
     </select>
 
     <insert id="save" parameterType="User">
-        insert into user (userName,userAccount,userPassword) values(#{userName},#{userAccount},#{userPassword})
+        insert into user (userName,userAccount,userPassword,roleId) values(#{userName},#{userAccount},#{userPassword},#{roleId})
     </insert>
 
 </mapper>

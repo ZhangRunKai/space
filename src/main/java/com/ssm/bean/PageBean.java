@@ -9,8 +9,7 @@ import java.util.List;
 public class PageBean<T>{
     private int currentPage;//当前页数
     private int pageSize;//每页显示的记录数
-    private int total; //总计录数
-    private int totalPage;//总页数
+    private int total;//总数量
     private List<T> data;//每页显示的数据
 
     public PageBean() {
@@ -32,20 +31,13 @@ public class PageBean<T>{
         this.pageSize = pageSize;
     }
 
+
     public int getTotal() {
         return total;
     }
 
     public void setTotal(int total) {
         this.total = total;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
     }
 
     public List<T> getData() {

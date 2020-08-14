@@ -14,13 +14,17 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
         <!-- 消息转换器 -->
         <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+                <property name="supportedMediaTypes" value="application/json;charset=UTF-8"/>
             </bean>
             <!-- 配置fastjson -->
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
     <mvc:interceptors>
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/"/>-->
+<!--            <bean class="com.ssm.interceptor.CORSInterceptor"></bean>-->
+<!--        </mvc:interceptor>-->
         <mvc:interceptor>
             <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
             <mvc:mapping path="/user/FA" />
@@ -29,16 +33,14 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 <!--            <mvc:exclude-mapping path="/user/register" />-->
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/register"/>
-            <mvc:exclude-mapping path="/blag/findAll"/>
-            <mvc:exclude-mapping path="/blag/findBlogId"/>
-            <mvc:exclude-mapping path="/blag/findAllByUserId"/>
+            <mvc:exclude-mapping path="/blog/find*"/>
             <bean class="com.ssm.interceptor.TokenInterceptor"></bean>
         </mvc:interceptor>
         <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
     </mvc:interceptors>
     <!-- 扫描业务代码 监听com.ssh文件夹下的代码-->
     <context:component-scan base-package="com.ssm"></context:component-scan>
-            <!-- 配置视图解析器 -->
+    <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".jsp"></property>
